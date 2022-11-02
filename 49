@@ -1,0 +1,30 @@
+/**
+ * @param {string[]} strs
+ * @return {string[][]}
+ */
+
+var groupAnagrams = function(strs) {
+    if(strs.length === 0){
+        return strs;
+    }
+    const map = new Map(); //用于存放找到的str
+
+    for (const str of strs){
+        const characters = Array(26).fill(0);//创建一个26个数值为0的字典
+        for (let i = 0 ; i < str.length;i++){
+            const ascii = str.charCodeAt(i)-97;
+            characters[ascii]++;
+        }
+        const key = characters.join(" ");
+        if(map.has(key)){
+            map.set(key,[...map.get(key),str]);
+        }else{
+            map.set(key,[str]);
+        }
+    }
+    const result = [];
+    for(const arr of map){
+        result.push(arr[1]);
+    }
+    return result;
+};
