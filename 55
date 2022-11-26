@@ -1,4 +1,5 @@
-
+javascript:
+动态规划：
 var canJump = function(nums) {
     const totallength = nums.length;
     const memo = Array(totallength).fill(0);
@@ -28,7 +29,7 @@ var canJump = function(nums) {
     let result = jump(0);
     return result;
 };
-javascript:
+
 var canJump = function(nums) {
     const totallength = nums.length;
     const memo = Array(totallength).fill(0);
@@ -49,4 +50,17 @@ var canJump = function(nums) {
     }else{
         return false;
     }
+};
+
+贪心：
+var canJump = function(nums) {
+    let jummax = nums.length - 1;
+
+    for(let i = nums.length - 2;i >= 0;i--){
+        if (i+nums[i]>=jummax){
+            jummax = i;
+        }
+    }
+
+    return jummax === 0;
 };
