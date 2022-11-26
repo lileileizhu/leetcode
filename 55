@@ -1,0 +1,30 @@
+javascript:
+var canJump = function(nums) {
+    const totallength = nums.length;
+    const memo = Array(totallength).fill(0);
+    memo[totallength - 1] = 1;
+
+    function jump(position){
+        if (memo[position] === 1){
+            return true;
+        }else if(memo[position] === -1){
+            return false;
+        }
+
+        const maxjump = Math.min(position+nums[position],totallength-1);
+        for (let i = position+1;i<=maxjump;i++){
+            const jumpresult = jump(i);
+            if (jumpresult === true){
+                memo[position] = 1;
+                return true;
+            }
+        }
+
+        memo[position] = -1;
+        return false;
+
+    }
+
+    let result = jump(0);
+    return result;
+};
